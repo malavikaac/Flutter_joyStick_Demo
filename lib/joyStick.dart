@@ -5,14 +5,14 @@ import 'joystickball.dart';
 import 'main.dart';
 import 'modeDropDown.dart';
 
-class SquareJoystickExample extends StatefulWidget {
-  const SquareJoystickExample({Key? key}) : super(key: key);
+class JoystickExample extends StatefulWidget {
+  const JoystickExample({Key? key}) : super(key: key);
 
   @override
-  _SquareJoystickExampleState createState() => _SquareJoystickExampleState();
+  _JoystickExampleState createState() => _JoystickExampleState();
 }
 
-class _SquareJoystickExampleState extends State<SquareJoystickExample> {
+class _JoystickExampleState extends State<JoystickExample> {
   double _x = 100;
   double _y = 100;
   JoystickMode _joystickMode = JoystickMode.all;
@@ -26,9 +26,10 @@ class _SquareJoystickExampleState extends State<SquareJoystickExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: const Color.fromARGB(255, 220, 248, 221),
       appBar: AppBar(
-        title: const Text('Square Joystick'),
+        backgroundColor: Colors.blueGrey,
+        title: const Text('Joystick'),
         actions: [
           JoystickModeDropdown(
             mode: _joystickMode,
@@ -44,19 +45,19 @@ class _SquareJoystickExampleState extends State<SquareJoystickExample> {
         child: Stack(
           children: [
             Container(
-              color: Colors.green,
+              color: const Color.fromARGB(255, 186, 207, 187),
             ),
             Ball(_x, _y),
             Align(
               alignment: const Alignment(0, 0.8),
               child: Joystick(
                 mode: _joystickMode,
-                base: JoystickSquareBase(mode: _joystickMode),
-                stickOffsetCalculator: const RectangleStickOffsetCalculator(),
                 listener: (details) {
                   setState(() {
                     _x = _x + step * details.x;
                     _y = _y + step * details.y;
+                    print(_x);
+                    print(_y);
                   });
                 },
               ),
